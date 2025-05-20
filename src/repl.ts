@@ -1,22 +1,5 @@
-import { createInterface } from 'node:readline';
-import type { CLICommand } from './command.js';
-import { commandExit } from './command_exit.js';
-import { commandHelp } from './command_help.js';
+import type { State } from "./state.js";
 
-export function getCommands(): Record<string, CLICommand> {
-  return {
-    exit: {
-      name: "exit",
-      description: "Exits the pokedex",
-      callback: commandExit,
-    },
-    help: {
-      name: "help",
-      description: "Displays a help message",
-      callback: commandHelp,
-    }
-  };
-}
 
 export function cleanInput(input: string): string[] {
    return input
@@ -26,25 +9,22 @@ export function cleanInput(input: string): string[] {
       .filter((word) => word !== '');
 }
 
-export function startREPL() {
-   const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-      prompt: "Pokedex > ",
-   });
-   const commands = getCommands();
-
-   rl.prompt();
-   rl.on("line", (input: string) => {
+export function startREPL(state: State) {
+   state.rl.prompt();
+   state.rl.on("line", async (input: string) => {
       const cleanedInput = cleanInput(input);
       if (cleanedInput.length > 0) {
          const commandName = cleanedInput[0];
-         if (commandName in commands) {
-            commands[commandName].callback(commands);
+         if (commandName in state.commands) {
+            try {
+               await state.commands[commandName].callback(state);
+            } catch (err) {
+               console.log("Network error");
+            }
          } else {
             console.log("Unknown command");
          }
       }
-      rl.prompt();
+      state.rl.prompt();
    });
 }
