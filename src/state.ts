@@ -46,7 +46,7 @@ export function getCommands(): Record<string, CLICommand> {
   };
 };
 
-export function initState(): State {
+export function initState(cacheInterval: number): State {
    return {
       rl: createInterface({
          input: process.stdin,
@@ -54,7 +54,7 @@ export function initState(): State {
          prompt: PROMPT,
       }),
       commands: getCommands(),
-      api: new PokeAPI(),
+      api: new PokeAPI(cacheInterval),
       nextLocationURL: null,
       previousLocationURL: null,
    };

@@ -11,20 +11,22 @@ export function cleanInput(input: string): string[] {
 
 export function startREPL(state: State) {
    state.rl.prompt();
+
    state.rl.on("line", async (input: string) => {
-      const cleanedInput = cleanInput(input);
-      if (cleanedInput.length > 0) {
-         const commandName = cleanedInput[0];
+      const words = cleanInput(input);
+      if (words.length > 0) {
+         const commandName = words[0];
          if (commandName in state.commands) {
             try {
                await state.commands[commandName].callback(state);
             } catch (err) {
-               console.log("Network error");
+               console.log((err as Error).message);
             }
          } else {
-            console.log("Unknown command");
+            console.log(`Unknown command: "${commandName}". Type "help" for a list of commands.`);
          }
       }
+
       state.rl.prompt();
    });
 }
