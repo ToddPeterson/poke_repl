@@ -6,4 +6,4 @@ export async function commandHelp(state: State) {
       const command = state.commands[commandName];
       console.log(`${command.name}: ${command.description}`);
    }
-};
+}

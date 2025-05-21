@@ -17,7 +17,7 @@ export class Cache {
       const entry: CacheEntry<T> = {
          createdAt: Date.now(),
          val,
-      }
+      };
       this.#cache.set(key, entry);
    }
 
@@ -35,7 +35,7 @@ export class Cache {
          if (value.createdAt < cutoff) {
             this.#cache.delete(key);
          }
-      })
+      });
    }
 
    #startReapLoop() {

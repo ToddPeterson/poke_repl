@@ -1,29 +1,39 @@
 {
-  "name": "poke_repl",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/main.js",
-    "dev": "npx tsc && node dist/main.js",
-    "test": "vitest --run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ToddPeterson/poke_repl.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ToddPeterson/poke_repl/issues"
-  },
-  "homepage": "https://github.com/ToddPeterson/poke_repl#readme",
-  "devDependencies": {
-    "@types/node": "^22.15.29",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.1"
-  }
+   "name": "poke_repl",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "type": "module",
+   "scripts": {
+      "build": "npx tsc",
+      "start": "node dist/main.js",
+      "dev": "npx tsc && node dist/main.js",
+      "test": "vitest --run",
+      "lint": "npx prettier --write ."
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ToddPeterson/poke_repl.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/ToddPeterson/poke_repl/issues"
+   },
+   "homepage": "https://github.com/ToddPeterson/poke_repl#readme",
+   "devDependencies": {
+      "@eslint/js": "^9.28.0",
+      "@types/node": "^22.15.29",
+      "@typescript-eslint/eslint-plugin": "^8.33.1",
+      "@typescript-eslint/parser": "^8.33.1",
+      "eslint": "^9.28.0",
+      "eslint-config-prettier": "^10.1.5",
+      "eslint-plugin-prettier": "^5.4.1",
+      "globals": "^16.2.0",
+      "prettier": "^3.5.3",
+      "typescript": "^5.8.3",
+      "typescript-eslint": "^8.33.1",
+      "vitest": "^3.2.1"
+   }
 }

@@ -6,8 +6,8 @@ export async function commandMap(state: State) {
    state.previousLocationURL = locations.previous;
    locations.results.forEach((location) => {
       console.log(location.name);
-   })
-};
+   });
+}
 
 export async function commandMapb(state: State) {
    if (!state.previousLocationURL) {
@@ -19,5 +19,5 @@ export async function commandMapb(state: State) {
    state.previousLocationURL = locations.previous;
    locations.results.forEach((location) => {
       console.log(location.name);
-   })
-};
+   });
+}

@@ -9,7 +9,7 @@ export async function commandCatch(state: State, name: string) {
    console.log(`Throwing a Pokeball at ${name}...`);
 
    const pokemon = await state.api.fetchPokemon(name);
-   const chance =  Math.max(100 - ((pokemon.base_experience - 30) / 3), 5);
+   const chance = Math.max(100 - (pokemon.base_experience - 30) / 3, 5);
    const success = Math.random() * 100 < chance;
 
    if (success) {
@@ -18,4 +18,4 @@ export async function commandCatch(state: State, name: string) {
    } else {
       console.log(`${name} escaped!`);
    }
-};
+}

@@ -11,4 +11,4 @@ export async function commandExplore(state: State, locationName: string) {
    location.pokemon_encounters.forEach((encounter) => {
       console.log(` - ${encounter.pokemon.name}`);
    });
-};
+}

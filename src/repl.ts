@@ -1,12 +1,11 @@
 import type { State } from "./state.js";
 
-
 export function cleanInput(input: string): string[] {
    return input
       .trim()
       .toLowerCase()
       .split(" ")
-      .filter((word) => word !== '');
+      .filter((word) => word !== "");
 }
 
 export function startREPL(state: State) {
@@ -24,7 +23,9 @@ export function startREPL(state: State) {
                console.log((err as Error).message);
             }
          } else {
-            console.log(`Unknown command: "${commandName}". Type "help" for a list of commands.`);
+            console.log(
+               `Unknown command: "${commandName}". Type "help" for a list of commands.`,
+            );
          }
       }
 
