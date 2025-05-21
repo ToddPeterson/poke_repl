@@ -38,7 +38,29 @@ export class PokeAPI {
       }
    }
 
-   // async fetchLocation(locationName: string): Promise<Location> {}
+   async fetchLocation(locationName: string): Promise<Location> {
+      const url = `${PokeAPI.baseURL}/location-area/${locationName}`;
+
+      const cachedVal = this.cache.get<Location>(url);
+      if (cachedVal) {
+         return cachedVal;
+      }
+
+      try {
+         const response = await fetch(url);
+
+         if (!response.ok) {
+            throw new Error(`${response.status}: ${response.statusText}`);
+         }
+
+         const location: Location = await response.json();
+         this.cache.add(url, location);
+
+         return location;
+      } catch (err) {
+         throw new Error(`Error fetching location "${locationName}": ${(err as Error).message}`);
+      }
+   }
 }
 
 export type ShallowLocations = {

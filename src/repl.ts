@@ -15,10 +15,11 @@ export function startREPL(state: State) {
    state.rl.on("line", async (input: string) => {
       const words = cleanInput(input);
       if (words.length > 0) {
-         const commandName = words[0];
+         const [commandName, ...args] = words;
          if (commandName in state.commands) {
+            const command = state.commands[commandName];
             try {
-               await state.commands[commandName].callback(state);
+               await command.callback(state, ...args);
             } catch (err) {
                console.log((err as Error).message);
             }
